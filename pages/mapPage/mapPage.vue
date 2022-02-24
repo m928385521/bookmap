@@ -1,6 +1,6 @@
 <template>
 
-	<view class="container">
+	<view>
 		<uni-nav-bar :height="height" fixed="true">
 			<view class="navCont">
 
@@ -26,12 +26,17 @@
 			</view>
 		</view> -->
 		<map class="map" :latitude="location.latitude" :longitude="location.longitude" show-location="true"
-			:markers="mapMarkers"></map>
+			:markers="mapMarkers" @markertap="markertap"></map>
+		<card></card>
 	</view>
 </template>
 
 <script>
+	import card from '../../components/card.vue'
 	export default {
+		components: {
+			card
+		},
 		data() {
 			return {
 				authorize: false,
@@ -45,25 +50,33 @@
 						id: 1,
 						latitude: 39.90469,
 						longitude: 116.39742,
-						iconPath: "/static/logo.png"
+						iconPath: "/static/map/mark.png",
+						width: "30px",
+						height: "30px"
 					},
 					{
 						id: 2,
 						latitude: 39.90268,
 						longitude: 116.39742,
-						iconPath: "/static/logo.png"
+						iconPath: "/static/map/mark.png",
+						width: "30px",
+						height: "30px"
 					},
 					{
 						id: 3,
 						latitude: 39.90067,
 						longitude: 116.39742,
-						iconPath: "/static/logo.png"
+						iconPath: "/static/map/mark.png",
+						width: "30px",
+						height: "30px"
 					},
 					{
 						id: 4,
 						latitude: 39.95466,
 						longitude: 116.39742,
-						iconPath: "/static/logo.png"
+						iconPath: "/static/map/mark.png",
+						width: "30px",
+						height: "30px"
 					}
 				],
 				height: 0,
@@ -142,15 +155,20 @@
 						console.log("获取用户信息失败", err)
 					}
 				})
+			},
+			markertap(e) {
+				console.log(e.detail)
 			}
 		}
+
 	}
 </script>
 
 <style lang="scss">
-	page{
+	page {
 		height: 100%;
 	}
+
 	#button {
 		width: 100px;
 		height: 40px;
@@ -172,11 +190,6 @@
 		bottom: 0;
 	}
 
-
-	.statusBar {
-		// height: var(--status-bar-height);
-		height: 0;
-	}
 
 	.navTitle {
 		position: relative;
