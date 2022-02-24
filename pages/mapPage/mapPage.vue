@@ -1,10 +1,7 @@
 <template>
 
-	<view>
-		<view class="statusBar">
-
-		</view>
-		<view class="navTitle">
+	<view class="container">
+		<uni-nav-bar :height="height" fixed="true">
 			<view class="navCont">
 
 				<view class="icon">
@@ -15,9 +12,21 @@
 					书店地图
 				</view>
 			</view>
-		</view>
-		<map style="width: 100%;height: 100vh;" :latitude="location.latitude" :longitude="location.longitude"
-			show-location="true" :markers="mapMarkers"></map>
+		</uni-nav-bar>
+		<!-- <view class="navTitle">
+			<view class="navCont">
+
+				<view class="icon">
+					<image src="../../static/logo.png" mode=""></image>
+
+				</view>
+				<view class="title">
+					书店地图
+				</view>
+			</view>
+		</view> -->
+		<map class="map" :latitude="location.latitude" :longitude="location.longitude" show-location="true"
+			:markers="mapMarkers"></map>
 	</view>
 </template>
 
@@ -56,23 +65,34 @@
 						longitude: 116.39742,
 						iconPath: "/static/logo.png"
 					}
-				]
+				],
+				height: 0,
 			};
 		},
-		created() {
-			// if(!this.authorize){
-			// 	let _this = this
-			// 	_this.getAuthorize()
-			// }
+		created() {},
+		beforeMount() {
+			let _this = this
+			// 获取系统信息，设置自定义导航栏的高度
+			uni.getSystemInfo({
+				success: function(e) {
+					let custom = uni.getMenuButtonBoundingClientRect();
+					_this.height = custom.bottom + custom.top - (e.statusBarHeight) + 4
+					console.log(123)
+				}
+			});
+			this.getLocation()
+
 		},
 		mounted() {},
 		onShow() {
+			// 自定义tabbar 设置当前tab的状态
 			if (typeof this.$scope.getTabBar === 'function' &&
 				this.$scope.getTabBar()) {
 				this.$scope.getTabBar().setData({
 					selected: 1
 				})
 			}
+
 		},
 		methods: {
 			getLocation() {
@@ -128,6 +148,9 @@
 </script>
 
 <style lang="scss">
+	page{
+		height: 100%;
+	}
 	#button {
 		width: 100px;
 		height: 40px;
@@ -139,32 +162,47 @@
 		border: 1px solid black;
 	}
 
+
+	.map {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+	}
+
+
 	.statusBar {
-		height: var(--status-bar-height);
+		// height: var(--status-bar-height);
+		height: 0;
 	}
 
 	.navTitle {
 		position: relative;
-		height: 35px;
+		height: 64px;
+		border-top: 1px solid black;
 
-		.navCont {
-			position: absolute;
-			display: flex;
-			justify-content: center;
-			bottom: 0;
-			left: 10px;
+	}
 
-			.icon {
-				width: 24px;
-				height: 24px;
-				image{
-					width: 100%;
-					height: 100%;
-				}
+	.navCont {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		bottom: 0;
+		left: 10px;
+
+		.icon {
+			width: 24px;
+			height: 24px;
+
+			image {
+				width: 100%;
+				height: 100%;
 			}
-
-			.title {}
-
 		}
+
+		.title {}
+
 	}
 </style>

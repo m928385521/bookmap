@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/homePage/homePage"
   ],
+  "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "书店地图",
