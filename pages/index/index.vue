@@ -14,8 +14,13 @@
 				title: 'Hello'
 			}
 		},
-		onLoad() {
-
+		onShow() {
+			if (typeof this.$scope.getTabBar === 'function' &&
+				this.$scope.getTabBar()) {
+				this.$scope.getTabBar().setData({
+					selected: 0
+				})
+			}
 		},
 		methods: {
 

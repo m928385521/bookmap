@@ -1,12 +1,10 @@
 {
   "pages": [
+    "pages/mapPage/mapPage",
     "pages/index/index",
-    "pages/homePage/homePage",
-    "pages/mapPage/mapPage"
+    "pages/homePage/homePage"
   ],
-  "subPackages": [],
   "window": {
-    "navigationStyle": "custom",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "书店地图",
     "navigationBarBackgroundColor": "#F8F8F8",

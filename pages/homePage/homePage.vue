@@ -8,8 +8,16 @@
 	export default {
 		data() {
 			return {
-				
-			}; 
+
+			};
+		},
+		onShow() {
+			if (typeof this.$scope.getTabBar === 'function' &&
+				this.$scope.getTabBar()) {
+				this.$scope.getTabBar().setData({
+					selected: 2
+				})
+			}
 		}
 	}
 </script>

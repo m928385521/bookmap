@@ -1,1 +1,1 @@
-<view><map style="width:100%;height:100vh;" latitude="{{location.latitude}}" longitude="{{location.longitude}}" show-location="true" markers="{{mapMarkers}}"></map></view>
+<view><view class="statusBar"></view><view class="navTitle"><view class="navCont"><view class="icon"><image src="/static/logo.png" mode=""></image></view><view class="title"> 书店地图 </view></view></view><map style="width: 100%;height: 100vh;" latitude="{{a}}" longitude="{{b}}" show-location="true" markers="{{c}}"></map></view>

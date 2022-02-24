@@ -1,6 +1,23 @@
 <template>
+
 	<view>
-		<map style="width: 100%;height: 100vh;" :latitude="location.latitude" :longitude="location.longitude" show-location="true" :markers="mapMarkers"></map>
+		<view class="statusBar">
+
+		</view>
+		<view class="navTitle">
+			<view class="navCont">
+
+				<view class="icon">
+					<image src="../../static/logo.png" mode=""></image>
+
+				</view>
+				<view class="title">
+					书店地图
+				</view>
+			</view>
+		</view>
+		<map style="width: 100%;height: 100vh;" :latitude="location.latitude" :longitude="location.longitude"
+			show-location="true" :markers="mapMarkers"></map>
 	</view>
 </template>
 
@@ -13,32 +30,33 @@
 				location: {
 					latitude: 39.909,
 					longitude: 116.39742,
-					
+
 				},
-				mapMarkers:[{
-					id:1,
-					latitude:39.90469,
-					longitude:116.39742,
-					iconPath:"/static/logo.png"
-				},
-				{
-					id:2,
-					latitude:39.90268,
-					longitude:116.39742,
-					iconPath:"/static/logo.png"
-				},
-				{
-					id:3,
-					latitude:39.90067,
-					longitude:116.39742,
-					iconPath:"/static/logo.png"
-				},
-				{
-					id:4,
-					latitude:39.95466,
-					longitude:116.39742,
-					iconPath:"/static/logo.png"
-				}]
+				mapMarkers: [{
+						id: 1,
+						latitude: 39.90469,
+						longitude: 116.39742,
+						iconPath: "/static/logo.png"
+					},
+					{
+						id: 2,
+						latitude: 39.90268,
+						longitude: 116.39742,
+						iconPath: "/static/logo.png"
+					},
+					{
+						id: 3,
+						latitude: 39.90067,
+						longitude: 116.39742,
+						iconPath: "/static/logo.png"
+					},
+					{
+						id: 4,
+						latitude: 39.95466,
+						longitude: 116.39742,
+						iconPath: "/static/logo.png"
+					}
+				]
 			};
 		},
 		created() {
@@ -46,6 +64,15 @@
 			// 	let _this = this
 			// 	_this.getAuthorize()
 			// }
+		},
+		mounted() {},
+		onShow() {
+			if (typeof this.$scope.getTabBar === 'function' &&
+				this.$scope.getTabBar()) {
+				this.$scope.getTabBar().setData({
+					selected: 1
+				})
+			}
 		},
 		methods: {
 			getLocation() {
@@ -77,7 +104,7 @@
 						_this.getLocation()
 					},
 					fail(err) {
-						console.log("授权失败",err)
+						console.log("授权失败", err)
 						_this.authorize = false
 					}
 				})
@@ -110,5 +137,34 @@
 		width: 100px;
 		height: 100px;
 		border: 1px solid black;
+	}
+
+	.statusBar {
+		height: var(--status-bar-height);
+	}
+
+	.navTitle {
+		position: relative;
+		height: 35px;
+
+		.navCont {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			bottom: 0;
+			left: 10px;
+
+			.icon {
+				width: 24px;
+				height: 24px;
+				image{
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.title {}
+
+		}
 	}
 </style>

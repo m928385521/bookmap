@@ -1,23 +1,27 @@
 Component({
 	data: {
-		selected: 0,
-		color: "#7A7E83",
-		selectedColor: "#3cc51f",
+		selected: 1,
+		color: "rgb(255,255,255)",
+		selectedColor: "rgb(255,222,3)",
 		list: [{
 				"pagePath": "/pages/index/index",
+				"iconPath": "/static/tabbaricon/map.png",
 				"text": "探索"
 			},
 			{
 				"pagePath": "/pages/mapPage/mapPage",
+				"iconPath": "/static/tabbaricon/map.png",
 				"text": "地图"
 			},
 			{
 				"pagePath": "/pages/homePage/homePage",
+				"iconPath": "/static/tabbaricon/map.png",
 				"text": "我的"
 			}
 		]
 	},
 	attached() {},
+
 	methods: {
 		switchTab(e) {
 			const data = e.currentTarget.dataset

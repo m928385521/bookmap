@@ -1,24 +1,24 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/mapPage/mapPage",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		}, {
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "书店地图"
 			}
-		}, {
+		},
+		{
 			"path": "pages/homePage/homePage",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "书店地图",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
-			"path": "pages/mapPage/mapPage",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
 		}
 	],
 	"tabBar": {
@@ -42,7 +42,7 @@
 	"usingComponents": {},
 
 	"globalStyle": {
-		"navigationStyle": "custom",
+
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "书店地图",
 		"navigationBarBackgroundColor": "#F8F8F8",
