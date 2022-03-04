@@ -2,16 +2,12 @@
 
 	<view>
 		<uni-nav-bar :height="height" fixed="true">
-			<view class="navCont">
 
-				<view class="icon">
-					<image src="../../static/logo.png" mode=""></image>
+			<image class="navIcon" src="../../static/map/title-icon@2x.png" mode=""></image>
 
-				</view>
-				<view class="title">
+			<!-- 				<view class="title">
 					书店地图
-				</view>
-			</view>
+				</view> -->
 		</uni-nav-bar>
 		<!-- <view class="navTitle">
 			<view class="navCont">
@@ -26,13 +22,17 @@
 			</view>
 		</view> -->
 		<map class="map" :latitude="location.latitude" :longitude="location.longitude" show-location="true"
-			:markers="mapMarkers" @markertap="markertap"></map>
+			:markers="mapMarkers" @markertap="markertap" scale="12"></map>
+
+
 		<card></card>
 	</view>
 </template>
 
 <script>
 	import card from '../../components/card.vue'
+	import axios from 'axios'
+	var amapFile = require('../../libs/amap-wx.130.js')
 	export default {
 		components: {
 			card
@@ -47,39 +47,40 @@
 
 				},
 				mapMarkers: [{
-						id: 1,
+						id: 0,
 						latitude: 39.90469,
 						longitude: 116.39742,
-						iconPath: "/static/map/mark.png",
-						width: "30px",
-						height: "30px"
+						iconPath: "/static/map/PinletMarker.png",
+						width: "24px",
+						height: "32px"
+					},
+					{
+						id: 1,
+						latitude: 39.90268,
+						longitude: 116.39742,
+						iconPath: "/static/map/PinletMarker.png",
+						width: "24px",
+						height: "32px"
 					},
 					{
 						id: 2,
-						latitude: 39.90268,
+						latitude: 39.90067,
 						longitude: 116.39742,
-						iconPath: "/static/map/mark.png",
-						width: "30px",
-						height: "30px"
+						iconPath: "/static/map/PinletMarker.png",
+						width: "24px",
+						height: "32px"
 					},
 					{
 						id: 3,
-						latitude: 39.90067,
-						longitude: 116.39742,
-						iconPath: "/static/map/mark.png",
-						width: "30px",
-						height: "30px"
-					},
-					{
-						id: 4,
 						latitude: 39.95466,
 						longitude: 116.39742,
-						iconPath: "/static/map/mark.png",
-						width: "30px",
-						height: "30px"
+						iconPath: "/static/map/PinletMarker.png",
+						width: "24px",
+						height: "32px"
 					}
 				],
-				height: 0,
+				height: 0, // 导航栏高度
+				currentPoint: 0,
 			};
 		},
 		created() {},
@@ -93,10 +94,30 @@
 					console.log(123)
 				}
 			});
-			this.getLocation()
+			// this.getLocation()
 
 		},
-		mounted() {},
+		mounted() {
+			let _this = this
+			let myMapFun = new amapFile.AMapWX({
+				key: '1c916177dc9705888f264163cf193c1e'
+			});
+			// 高德地图sdk获取地理位置，带中文位置信息
+			myMapFun.getRegeo({
+				success: function(data) {
+					//成功回调
+					console.log("高德地图成功", data)
+					_this.location.latitude = data[0].latitude
+					_this.location.longitude = data[0].longitude
+				},
+				fail: function(info) {
+					//失败回调
+					console.log("高德地图失败", info)
+				}
+			})
+			this.testHttpRequest()
+
+		},
 		onShow() {
 			// 自定义tabbar 设置当前tab的状态
 			if (typeof this.$scope.getTabBar === 'function' &&
@@ -108,13 +129,15 @@
 
 		},
 		methods: {
+			// 获取地理位置
 			getLocation() {
 				let _this = this
 				if (this.authorize) {
 					uni.getLocation({
 						type: "gcj02",
+						geocode: true,
 						success(res) {
-							console.log(res)
+							console.log("获取的地理位置", res)
 							_this.location.latitude = res.latitude
 							_this.location.longitude = res.longitude
 						},
@@ -127,6 +150,7 @@
 				}
 
 			},
+			// 获取用户授权
 			getAuthorize() {
 				let _this = this
 				uni.authorize({
@@ -142,6 +166,7 @@
 					}
 				})
 			},
+			// 获取用户信息
 			getUserInfo() {
 				let _this = this
 				uni.getUserProfile({
@@ -156,8 +181,30 @@
 					}
 				})
 			},
+			// 点击地图上点的点击事件
 			markertap(e) {
 				console.log(e.detail)
+				this.mapMarkers[this.currentPoint].iconPath = "/static/map/PinletMarker.png"
+
+				this.currentPoint = e.detail.markerId
+				this.mapMarkers[this.currentPoint].iconPath = "/static/map/PinletMarkerwithDot.png"
+			},
+
+			testHttpRequest() {
+				console.log("请求数据")
+				uni.request({
+					url: 'http://example.com/path/to', //仅为示例，并非真实接口地址。
+					// data: {
+					// 	text: 'uni.request'
+					// },
+
+					success: (res) => {
+						console.log(res.data);
+					},
+					fail: (err) => {
+						console.log("失败", err)
+					}
+				})
 			}
 		}
 
@@ -198,24 +245,13 @@
 
 	}
 
-	.navCont {
+	.navIcon {
 		position: absolute;
 		display: flex;
-		justify-content: center;
-		bottom: 0;
+		width: 80px;
+		height: 33px;
+		bottom: 10px;
 		left: 10px;
-
-		.icon {
-			width: 24px;
-			height: 24px;
-
-			image {
-				width: 100%;
-				height: 100%;
-			}
-		}
-
-		.title {}
 
 	}
 </style>

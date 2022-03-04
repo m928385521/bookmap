@@ -5,17 +5,17 @@ Component({
 		selectedColor: "rgb(255,222,3)",
 		list: [{
 				"pagePath": "/pages/index/index",
-				"iconPath": "/static/tabbaricon/map.png",
+				"iconPath": "../static/tabbaricon/sort_black_24dp.png",
 				"text": "探索"
 			},
 			{
 				"pagePath": "/pages/mapPage/mapPage",
-				"iconPath": "/static/tabbaricon/map.png",
+				"iconPath": "/static/tabbaricon/map_black_24dp.png",
 				"text": "地图"
 			},
 			{
 				"pagePath": "/pages/homePage/homePage",
-				"iconPath": "/static/tabbaricon/map.png",
+				"iconPath": "/static/tabbaricon/account_circle_black_24dp.png",
 				"text": "我的"
 			}
 		]

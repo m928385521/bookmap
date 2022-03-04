@@ -1,38 +1,39 @@
 .tab-bar {
 	position: fixed;
-	bottom: 40px;
+	bottom: 5.3vh;
 	left: 10vw;
-	width: 80vw;
-	height: 38px;
+	width: calc(80vw - 24px);
+	/* height: 52px; */
+	padding: 10px 14px 9px 14px;
 	background: white;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	/* padding-bottom: env(safe-area-inset-bottom); */
-	border-radius: 20rpx;
-	box-shadow: 0px 5px 5px 0px #b2b2b2;
+	border-radius: 15px;
+	box-shadow: 0px 4px 4px 0px rgba(255,255,255,0.25);
 }
 
 .tab-bar-item {
 	text-align: center;
 	display: flex;
-	padding: 5px;
+	padding: 4px 9px 5px 6px;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
 	/* width: 25%; */
 	/* height: 70%; */
-	border-radius: 40%;
+	border-radius: 15px;
 }
 
 .title{
-	font-size: 10px;
+	font-size: 14px;
 	margin-left: 5px;
 	font-weight: bold;
 }
 .icon{
-	width: 16px;
-	height: 16px;
+	width: 24px;
+	height: 24px;
 
 }
 
