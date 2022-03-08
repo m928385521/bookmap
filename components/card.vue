@@ -53,7 +53,7 @@
 		left: 5vw;
 		background: #fff;
 		border-radius: 5px;
-		box-shadow: 0px 5px 5px 0px #b2b2b2;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		z-index: 1;
 
 		// height: 200px;
@@ -75,15 +75,18 @@
 				width: 100%;
 				justify-content: space-between;
 				align-items: center;
-				.title-left{
-					
-					font-weight: 500;
+
+				.title-left {
+					font-size: 14px;
+					font-weight: 600;
 				}
+
 				.title-right {
 					display: flex;
 					align-items: center;
 					font-size: 12px;
 					font-weight: 400;
+
 					.wish,
 					.navigation {
 						display: flex;
@@ -94,11 +97,15 @@
 							width: 18px;
 							height: 18px;
 						}
+						.text{
+							margin-left: 3px;
+						}
 					}
 				}
 			}
 
 			.cont-info {
+				font-size: 14px;
 				font-weight: 400;
 			}
 		}

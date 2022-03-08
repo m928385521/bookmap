@@ -31,7 +31,6 @@
 
 <script>
 	import card from '../../components/card.vue'
-	import axios from 'axios'
 	var amapFile = require('../../libs/amap-wx.130.js')
 	export default {
 		components: {

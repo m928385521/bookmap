@@ -56,9 +56,9 @@
 					<view class="book-location">
 						杭州，浙江
 					</view>
-				</view>
-				<view class="punch-time">
-					2022年2月20日
+					<view class="punch-time">
+						2022年2月20日
+					</view>
 				</view>
 			</view>
 		</view>
@@ -96,31 +96,39 @@
 
 		.info-left {
 			width: 28vw;
-			padding: 2vw 3vw;
+			padding: 6px 13px 11px 13px;
 
 			border-radius: 3px;
-			box-shadow: 0px 5px 5px 0px #b2b2b2;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 			border-radius: 5px;
 			background: #fff;
 
 			.profile-picture {
-				width: 40px;
-				height: 40px;
-				margin-left: 2vw;
+				width: 45px;
+				height: 45px;
+				margin-left: 8px;
 				border-radius: 50%;
+			}
+
+			.nick-name {
+				font-size: 14px;
 			}
 
 			.location {
 				font-size: 10px;
+				color: rgb(142, 142, 147);
 			}
 		}
 
 		.info-right {
 			position: relative;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
 			width: 59vw;
-			padding: 2vw 3vw;
+			padding: 9px 9px 12px 16px;
 			margin-left: 3vw;
-			box-shadow: 0px 5px 5px 0px #b2b2b2;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 			border-radius: 5px;
 			background: #fff;
 
@@ -136,8 +144,9 @@
 				.city-number,
 				.book-number {
 					display: inline-block;
-					font-size: 42px;
-					font-weight: bold;
+					font-size: 48px;
+					font-weight: 600;
+					line-height: 48px;
 				}
 
 				.book-number {
@@ -148,6 +157,7 @@
 				.book-text {
 					margin: 0 6px;
 					font-size: 10px;
+					font-weight: 600;
 				}
 
 				.setting {
@@ -166,7 +176,7 @@
 		display: flex;
 		width: 90vw;
 		margin: auto;
-		margin-top: 2vw;
+		margin-top: 12px;
 		align-items: center;
 
 		image {
@@ -178,7 +188,7 @@
 		.punch,
 		.wish {
 			display: flex;
-			padding: 3px 6px;
+			padding: 4px 6px;
 
 			align-items: center;
 		}
@@ -187,16 +197,17 @@
 		.wish-text {
 			margin-left: 2px;
 			font-size: 12px;
+			font-weight: 600;
 		}
 
 		.wish {
-			margin-left: 15px;
+			margin-left: 7px;
 		}
 
 		.onselect {
 			background-color: rgb(255, 221, 0);
 			border-radius: 12px;
-			box-shadow: 0px 5px 5px 0px #b2b2b2;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 		}
 
@@ -205,43 +216,51 @@
 	.book-list {
 		width: 90vw;
 		margin: auto;
-		margin-top: 2vw;
+		margin-top: 12px;
 
 		.book-item {
 			display: flex;
-			padding: 2vw 3vw;
-			align-items: flex-start;
+			// align-items: flex-start;
 			border-radius: 5px;
-			box-shadow: 0px 5px 5px 0px #b2b2b2;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 			background-color: #fff;
-			justify-content: space-between;
+			// justify-content: space-between;
 
 			image {
-				width: 35px;
-				height: 35px;
+				flex-shrink: 0;
+				width: 61px;
+				height: 61px;
 			}
 
 			.book-info {
-				width: 30vw;
+				position: relative;
+				padding: 9px 0 8px 23px;
+				width: 100%;
 				// margin-left: 40px;
 				display: flex;
 				flex-direction: column;
 
 				.book-title {
 					margin-bottom: 5px;
-					font-size: 12px;
-					font-weight: bold;
+					font-size: 14px;
+					font-weight: 500;
 				}
 
 				.book-location {
-					font-size: 10px;
+					font-size: 12px;
+					font-weight: 400;
+				}
+
+				.punch-time {
+					position: absolute;
+					top: 11px;
+					right: 14px;
+					font-size: 12px;
+					color: #8e8e93;
+					align-self: flex-start;
 				}
 			}
 
-			.punch-time {
-				font-size: 10px;
-				align-self: flex-start;
-			}
 		}
 	}
 </style>
