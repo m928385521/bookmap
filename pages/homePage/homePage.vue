@@ -33,13 +33,13 @@
 			</view>
 		</view>
 		<view class="tab-bar">
-			<view class="punch onselect">
+			<view class="punch " :class="{'onselect':currentTab==1}" @click="changeTab(1)">
 				<image src="../../static/my/collections_bookmark_black_24dp.png" mode=""></image>
 				<view class="punch-text">
 					已打卡
 				</view>
 			</view>
-			<view class="wish">
+			<view class="wish" :class="{'onselect':currentTab==2}" @click="changeTab(2)">
 				<image src="../../static/map/add_location_alt_black_24dp.png" mode=""></image>
 				<view class="wish-text">
 					心愿单
@@ -69,15 +69,23 @@
 	export default {
 		data() {
 			return {
+				currentTab: 1, // 当前tab数，1：已打卡，2：心愿单
 
 			};
 		},
 		onShow() {
+			// 自定义tabbar设置当前的tab页码
 			if (typeof this.$scope.getTabBar === 'function' &&
 				this.$scope.getTabBar()) {
 				this.$scope.getTabBar().setData({
 					selected: 2
 				})
+			}
+		},
+		methods: {
+			// 切换心愿单和已打卡
+			changeTab(tab) {
+				this.currentTab = tab
 			}
 		}
 	}

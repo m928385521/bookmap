@@ -25,7 +25,7 @@
 			:markers="mapMarkers" @markertap="markertap" scale="12"></map>
 
 
-		<card></card>
+		<card @mapNavigation="mapNavigation()"></card>
 	</view>
 </template>
 
@@ -188,7 +188,7 @@
 				this.currentPoint = e.detail.markerId
 				this.mapMarkers[this.currentPoint].iconPath = "/static/map/PinletMarkerwithDot.png"
 			},
-
+			// 测试请求数据
 			testHttpRequest() {
 				console.log("请求数据")
 				uni.request({
@@ -202,6 +202,22 @@
 					},
 					fail: (err) => {
 						console.log("失败", err)
+					}
+				})
+			},
+			// 导航
+			mapNavigation(arg) {
+				let _this = this
+				console.log(arg)
+				uni.openLocation({
+					latitude: 39.90469,
+					longitude: 116.39742,
+					name:"测试地址",
+					success() {
+						console.log("navigation success")
+					},
+					fail(err) {
+						console.log("navigation fail",err)
 					}
 				})
 			}

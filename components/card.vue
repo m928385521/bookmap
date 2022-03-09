@@ -14,7 +14,7 @@
 								心愿单
 							</view>
 						</view>
-						<view class="navigation">
+						<view class="navigation" @click="mapNavigation()">
 							<image src="../static/map/add_location_alt_black_24dp.svg" mode=""></image>
 							<view class="text">
 								导航
@@ -38,6 +38,14 @@
 			return {
 
 			};
+		},
+		methods: {
+			mapNavigation() {
+				this.$emit('mapNavigation', {
+					x: 0,
+					y: 0
+				})
+			}
 		}
 	}
 </script>
@@ -97,7 +105,8 @@
 							width: 18px;
 							height: 18px;
 						}
-						.text{
+
+						.text {
 							margin-left: 3px;
 						}
 					}
